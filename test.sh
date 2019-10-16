@@ -1,25 +1,22 @@
-PATTERNS=(*hello*.py *code*.py *calc*.py)
-
-for dir in */*
+#!/bin/bash
+# Kirsten Basinet Oct 2019
+for dir in */
 do
-	echo "$dir"
-	for file in "{$PATTERNS[@]}"
+        isdone="n"	
+	while [ $isdone != "y" ]
 	do
-		echo "$file"
+		i=1
+		echo -e "\nFiles in $dir"
+		for file in $dir/* 
+		do
+			echo "  [$i] $(basename "$file")"
+			let i++
+		done
+
+		echo -ne "Which file do you want to run? "
+		read filenum
+		echo -ne "Next directory? (y/n) "
+		read isdone
 	done
 done
-
-# list of filenames [....]
-# for each directory
-	# cd to that
-	# for each file in list:
-		#try python3 [file]
-		#if fail:
-			# "which one do you want to run?"
-			# for each file in dir:
-				# print [i] filename
-			# get user input
-			# if num:
-				# exec that file
-		# cd ..
 
